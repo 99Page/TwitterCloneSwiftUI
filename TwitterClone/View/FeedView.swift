@@ -9,7 +9,26 @@ import SwiftUI
 
 struct FeedView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack(alignment: .bottomTrailing) {
+            
+            ScrollView {
+                
+            }
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "plus")
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                    .padding()
+            }
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .clipShape(Circle())
+            .padding()
+
+        }
     }
 }
 
