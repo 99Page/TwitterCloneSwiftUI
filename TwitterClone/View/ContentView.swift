@@ -21,7 +21,7 @@ struct ContentView: View {
                     }
                 
                 
-                Text("Search")
+                SearchView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("Search")
@@ -36,8 +36,9 @@ struct ContentView: View {
                 
                 
 
-            }.navigationTitle("홈 화면")
-                .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationTitle("홈 화면")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
