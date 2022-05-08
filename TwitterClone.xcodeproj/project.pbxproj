@@ -15,6 +15,7 @@
 		1514701B2824043C007C2A5D /* TwitterCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514701A2824043C007C2A5D /* TwitterCloneUITests.swift */; };
 		1514701D2824043C007C2A5D /* TwitterCloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514701C2824043C007C2A5D /* TwitterCloneUITestsLaunchTests.swift */; };
 		158EE8702824FB9A006C4C77 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158EE86F2824FB9A006C4C77 /* FeedView.swift */; };
+		159D3B712827D4420089024C /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159D3B702827D4420089024C /* TweetCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		1514701A2824043C007C2A5D /* TwitterCloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterCloneUITests.swift; sourceTree = "<group>"; };
 		1514701C2824043C007C2A5D /* TwitterCloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterCloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		158EE86F2824FB9A006C4C77 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		159D3B702827D4420089024C /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			children = (
 				151470012824043C007C2A5D /* ContentView.swift */,
 				158EE86F2824FB9A006C4C77 /* FeedView.swift */,
+				159D3B702827D4420089024C /* TweetCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				151470022824043C007C2A5D /* ContentView.swift in Sources */,
 				158EE8702824FB9A006C4C77 /* FeedView.swift in Sources */,
 				151470002824043C007C2A5D /* TwitterCloneApp.swift in Sources */,
+				159D3B712827D4420089024C /* TweetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
