@@ -25,7 +25,7 @@ struct ConversationCell: View {
                         .font(.subheadline)
                         .bold()
                 
-                    Text("5월 9일 월요일 커뮤니리라운지에서 메세지 셀 타이핑 중... 버그 발견")
+                    Text("5월 9일 월요일 커뮤니리라운지에서 메세지 셀 타이핑 중... 버그 수정 완료")
                         .font(.callout)
                         .lineLimit(2)
                         

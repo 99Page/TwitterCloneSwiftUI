@@ -19,7 +19,7 @@ struct ConversationView: View {
                 VStack(alignment: .leading) {
                     ForEach(0..<20) { _ in
                         NavigationLink {
-                            Text("Details")
+                            ChatView()
                         } label: {
                             ConversationCell()
                                 .multilineTextAlignment(.leading)
