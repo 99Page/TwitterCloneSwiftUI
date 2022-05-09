@@ -22,7 +22,9 @@ struct ConversationView: View {
                             Text("Details")
                         } label: {
                             ConversationCell()
+                                .multilineTextAlignment(.leading)
                         }
+    
                     }
                 }
             }

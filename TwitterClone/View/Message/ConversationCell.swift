@@ -29,17 +29,17 @@ struct ConversationCell: View {
                         .font(.callout)
                         .lineLimit(2)
                         
+                        
                 }
                 .frame(height: 64)
                 .padding(.trailing)
-                .foregroundColor(Color.textColor)
                 
             }
-            .padding(.horizontal)
             
             Divider()
                 .padding(.vertical)
         }
+        .foregroundColor(Color.textColor)
     }
 }
 
