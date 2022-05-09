@@ -34,6 +34,7 @@ struct TweetCell: View {
                     }
                     
                     Text("5월 8일 일요일 커뮤니티 라운지에서 SwiftUI로 트위터 클론코딩. ")
+                        .font(.body)
                         
                 }
                 

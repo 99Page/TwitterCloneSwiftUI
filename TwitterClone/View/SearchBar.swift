@@ -26,8 +26,11 @@ struct SearchBar: View {
                             .padding(.leading, 8)
                     }
                 )
+           
         }
         .padding(.horizontal, 10)
+        
+        
         
        
         
@@ -36,6 +39,10 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant(""))
+        Group {
+            SearchBar(text: .constant(""))
+                .previewInterfaceOrientation(.portrait)
+            SearchBar(text: .constant(""))
+        }
     }
 }

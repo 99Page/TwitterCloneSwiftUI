@@ -32,9 +32,10 @@ struct FeedView: View {
             .foregroundColor(.white)
             .clipShape(Circle())
             .padding()
-
         }
+        
     }
+    
 }
 
 struct FeedView_Previews: PreviewProvider {

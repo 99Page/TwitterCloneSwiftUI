@@ -14,7 +14,15 @@ struct SearchView: View {
         ScrollView {
             SearchBar(text: $seacrhText)
             
-            
+            VStack(alignment: .leading) {
+                ForEach(0..<10) { _ in
+                    HStack {
+                        UserCell()
+                        Spacer()
+                    }
+                    
+                }
+            }
         }
     }
 }
