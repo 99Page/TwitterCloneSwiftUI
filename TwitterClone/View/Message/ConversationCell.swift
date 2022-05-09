@@ -11,7 +11,7 @@ struct ConversationCell: View {
     var body: some View {
         
         VStack {
-            HStack(alignment: .top) {
+            HStack(spacing : 12) {
                 Image(systemName: "person")
                     .resizable()
                     .scaledToFit()
@@ -25,13 +25,15 @@ struct ConversationCell: View {
                         .font(.subheadline)
                         .bold()
                 
-                    Text("5월 9일 월요일 커뮤니리라운지에서 메세지 셀 타이핑 중")
-                        .font(.body)
+                    Text("5월 9일 월요일 커뮤니리라운지에서 메세지 셀 타이핑 중... 버그 발견")
+                        .font(.callout)
                         .lineLimit(2)
                         
                 }
+                .frame(height: 64)
+                .padding(.trailing)
+                .foregroundColor(Color.textColor)
                 
-                Spacer()
             }
             .padding(.horizontal)
             
