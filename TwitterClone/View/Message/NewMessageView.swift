@@ -8,34 +8,49 @@
 import SwiftUI
 
 struct NewMessageView: View {
+    
     @State var seacrhText = ""
+    @State var startChat = false
     @Binding var show: Bool
-    @Binding var startChat: Bool
+    
     
     var body: some View {
-        ScrollView {
-            SearchBar(text: $seacrhText)
+        
+        ZStack {
             
-            VStack(alignment: .leading) {
-                ForEach(0..<10) { _ in
-                    HStack {
-                        Button {
-                            self.show.toggle()
-                            self.startChat.toggle()
-                        } label: {
-                            UserCell()
+            ScrollView {
+                SearchBar(text: $seacrhText)
+                
+                VStack(alignment: .leading) {
+                    ForEach(0..<10) { _ in
+                        HStack {
+                            Button {
+                                self.startChat.toggle()
+                                print("startChat toggling : \(startChat.description)")
+                            } label: {
+                                UserCell()
+                            }
+                            Spacer()
                         }
-                        Spacer()
+                        
                     }
-                    
                 }
             }
+            
+            NavigationLink(isActive: $startChat) {
+                ChatView()
+                    .onDisappear{
+                        self.show.toggle()
+                        print("show toggling : \(show.description)")
+                    }
+            } label: {}
         }
+       
     }
 }
 
 struct NewMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        NewMessageView(show: .constant(true), startChat: .constant(true))
+        NewMessageView(show: .constant(true))
     }
 }

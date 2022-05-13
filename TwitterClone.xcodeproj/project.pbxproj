@@ -171,8 +171,8 @@
 			children = (
 				1521ECC1282D59C400CA5E98 /* UserProfileView.swift */,
 				1521ECC3282D5A1400CA5E98 /* ProfileHeaderView.swift */,
-				1521ECC5282D5A3000CA5E98 /* FilterButtonView.swift */,
 				1521ECC7282D5A4500CA5E98 /* ProfileActionButtonView.swift */,
+				1521ECC5282D5A3000CA5E98 /* FilterButtonView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

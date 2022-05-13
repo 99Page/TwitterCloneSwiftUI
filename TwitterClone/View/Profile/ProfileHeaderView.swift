@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileHeaderView: View {
+    
     var body: some View {
         VStack {
             Image(systemName: "applelogo")
@@ -50,6 +51,8 @@ struct ProfileHeaderView: View {
                 }
             }
             .padding()
+            
+            ProfileActionButtonView(isMyProfile: true)
         }
     }
 }
