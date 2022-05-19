@@ -13,7 +13,6 @@ struct FeedView: View {
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            
             ScrollView {
                 
                 VStack {
@@ -39,9 +38,7 @@ struct FeedView: View {
                 NewTweetView(isPresented: $isShowingNewTweetView)
             }
         }
-        
     }
-    
 }
 
 struct FeedView_Previews: PreviewProvider {
