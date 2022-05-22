@@ -11,4 +11,5 @@ import SwiftUI
 extension Color {
     
     static let textColor = Color("textColor")
+    static let twitterBackgound = Color("twitterBackground")
 }
