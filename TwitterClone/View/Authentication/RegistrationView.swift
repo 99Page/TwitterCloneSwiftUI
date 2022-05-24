@@ -7,16 +7,24 @@
 
 import SwiftUI
 
+enum Registration : Int {
+    case email
+    case fullName
+    case username
+    case password
+}
+
 struct RegistrationView: View {
     
     @State var binding : [String] = ["", "", "", ""]
-    let placeholder  = ["Full name", "Email", "Username", "Password"]
-    let imageSource = ["person", "envelope", "person", "lock"]
+    let placeholder  = ["Email", "Fullname", "Username", "Password"]
+    let imageSource = ["envelope", "person", "person", "lock"]
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State var showImagePicker = false
     @State var selectedUIImage: UIImage?
     @State var image: Image?
+    @ObservedObject var viewModel = AuthViewModel()
     
     func loadImage() {
         guard let selectedImage = selectedUIImage else { return }
@@ -34,10 +42,9 @@ struct RegistrationView: View {
                         if let image = image {
                             image
                                 .resizable()
-                                .scaledToFit()
+                                .clipShape(Circle())
                                 .frame(width: 120, height: 120)
-                                .clipped()
-                                .cornerRadius(20)
+                
                                 
                         } else {
                             Image(systemName: "plus.circle")
@@ -57,16 +64,27 @@ struct RegistrationView: View {
                 
                 VStack(spacing: 20) {
                     ForEach(0 ..< 4) { i in
-                        CustomTextField(text: $binding[i], placeholder: Text(placeholder[i]), imageSource: imageSource[i])
-                            .padding()
-                            .background(Color(.init(white: 1, alpha: 0.15)))
-                            .cornerRadius(10)
+                        if (i == 3) {
+                            CustomSecureField(text: $binding[i], placeholder: Text(placeholder[i]), imageSource: imageSource[i])
+                                .padding()
+                                .background(Color(.init(white: 1, alpha: 0.15)))
+                                .cornerRadius(10)
+                                .foregroundColor(.white)
+                        } else {
+                            CustomTextField(text: $binding[i], placeholder: Text(placeholder[i]), imageSource: imageSource[i])
+                                .padding()
+                                .background(Color(.init(white: 1, alpha: 0.15)))
+                                .cornerRadius(10)
+                                .foregroundColor(.white)
+                        }
+                    
                     }
                 }
                 .padding()
                 
                 Button {
-                    
+                    guard let image = selectedUIImage else { return }
+                    viewModel.registerUser(email: binding[Registration.email.rawValue], password: binding[Registration.password.rawValue], username: binding[Registration.username.rawValue], fullname: binding[Registration.fullName.rawValue], profileImage: image)
                 } label: {
                     Text("Sign In")
                         .font(.headline)
