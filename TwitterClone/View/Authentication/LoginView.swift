@@ -11,11 +11,13 @@ struct LoginView: View {
     
     @State var email = ""
     @State var password = ""
+    
     let emailPlaceholder = "Email"
     let passwordPlaceholder = "Password"
     let emailImage = "envelope"
     let passwordImage = "lock"
     
+    @ObservedObject var viewModel = AuthViewModel()
     
     var body: some View {
         
@@ -34,13 +36,17 @@ struct LoginView: View {
                             .padding()
                             .background(Color(.init(white: 1, alpha: 0.15)))
                             .cornerRadius(10)
+                            .foregroundColor(.white)
+                            
                         
-                        CustomTextField(text: $password, placeholder: Text(passwordPlaceholder), imageSource: passwordImage)
+                        CustomSecureField(text: $password, placeholder: Text(passwordPlaceholder), imageSource: passwordImage)
                             .padding()
                             .background(Color(.init(white: 1, alpha: 0.15)))
                             .cornerRadius(10)
+                            .foregroundColor(.white)
                     }
                     .padding()
+
                     
                     HStack {
                         Spacer()
@@ -58,7 +64,7 @@ struct LoginView: View {
                     .padding(.horizontal)
                     
                     Button {
-                        
+                        viewModel.login(withEmail: email, password: password)
                     } label: {
                         Text("Sign In")
                             .font(.headline)
