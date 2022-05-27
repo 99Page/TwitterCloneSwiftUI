@@ -14,7 +14,9 @@ struct ContentView: View {
     var body: some View {
         
         Group {
-            if viewModel.userSession != nil {
+            if viewModel.userSession == nil {
+                LoginView()
+            } else {
                 NavigationView {
                     TabView {
                         FeedView()
@@ -36,15 +38,10 @@ struct ContentView: View {
                                 Image(systemName: "envelope")
                                 Text("Message")
                             }
-                        
-                        
-
                     }
                     .navigationTitle("홈 화면")
                     .navigationBarTitleDisplayMode(.inline)
                 }
-            } else {
-                LoginView()
             }
         }
        

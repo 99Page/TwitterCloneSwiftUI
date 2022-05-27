@@ -17,7 +17,7 @@ struct LoginView: View {
     let emailImage = "envelope"
     let passwordImage = "lock"
     
-    @ObservedObject var viewModel = AuthViewModel()
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
         
