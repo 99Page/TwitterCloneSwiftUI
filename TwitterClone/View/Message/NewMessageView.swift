@@ -12,7 +12,7 @@ struct NewMessageView: View {
     @State var seacrhText = ""
     @State var startChat = false
     @Binding var show: Bool
-    
+    @ObservedObject var viewModel = SearchViewModel()
     
     var body: some View {
         
@@ -22,13 +22,13 @@ struct NewMessageView: View {
                 SearchBar(text: $seacrhText)
                 
                 VStack(alignment: .leading) {
-                    ForEach(0..<10) { _ in
+                    ForEach(viewModel.users) { user in
                         HStack {
                             Button {
                                 self.startChat.toggle()
                                 print("startChat toggling : \(startChat.description)")
                             } label: {
-                                UserCell()
+                                UserCell(user: user)
                             }
                             Spacer()
                         }
