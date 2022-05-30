@@ -10,21 +10,15 @@ import SwiftUI
 struct UserProfileView: View {
     
     @State var selectedFilter: TweetFilterOptions = .tweets
+    let user: User
     
     var body: some View {
         ScrollView {
             VStack {
-                ProfileHeaderView()
+                ProfileHeaderView(user: user)
                     .padding()
-                
                 FilterButtonView(selectedOption: $selectedFilter)
             }
         }
-    }
-}
-
-struct UserProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserProfileView()
     }
 }

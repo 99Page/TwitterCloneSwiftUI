@@ -17,7 +17,8 @@ struct UserCell: View {
         HStack(spacing: 12) {
             KFImage(URL(string: user.profileImageUrl))
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
+                .clipped()
                 .frame(width:56, height:56)
                 .cornerRadius(28)
             
@@ -31,6 +32,7 @@ struct UserCell: View {
             }
         }
         .foregroundColor(.black)
+        .padding(3)
     }
 }
 

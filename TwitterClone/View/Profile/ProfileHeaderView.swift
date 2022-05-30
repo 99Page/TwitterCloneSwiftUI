@@ -6,24 +6,28 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileHeaderView: View {
     
+    
+    let user: User
+    
     var body: some View {
         VStack {
-            Image(systemName: "applelogo")
+            KFImage(URL(string: user.profileImageUrl))
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
                 .clipped()
                 .frame(width: 120, height: 120)
                 .cornerRadius(120 / 2)
                 .shadow(color: .black, radius: 10, x:0, y:0)
             
-            Text("Apple lover")
+            Text(user.fullname)
                 .font(.headline)
                 .bold()
             
-            Text("@tim cook")
+            Text("@\(user.username)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
             
@@ -52,13 +56,7 @@ struct ProfileHeaderView: View {
             }
             .padding()
             
-            ProfileActionButtonView(isMyProfile: true)
+            ProfileActionButtonView(isMyProfile: user.isCurrentUser)
         }
-    }
-}
-
-struct ProfileHeaderView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileHeaderView()
     }
 }
