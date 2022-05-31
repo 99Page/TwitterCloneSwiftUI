@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ProfileActionButtonView: View {
     
-    let isMyProfile: Bool
+    let viewModel: ProfileViewModel
+    @Binding var editProfilePresented: Bool
     
     var body: some View {
         ZStack {
-            if isMyProfile {
+            if viewModel.user.isCurrentUser {
                 Button {
                     
                 } label: {
@@ -30,9 +31,9 @@ struct ProfileActionButtonView: View {
             } else {
                 HStack {
                     Button {
-                        
+                        editProfilePresented ? viewModel.unfollow() : viewModel.follow()
                     } label: {
-                        Text("Following")
+                        Text(editProfilePresented ? "Following" : "Follow")
                             .bold()
                             .font(.subheadline)
                     }
@@ -59,11 +60,5 @@ struct ProfileActionButtonView: View {
                 }
             }
         }
-    }
-}
-
-struct ProfileActionButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileActionButtonView(isMyProfile: true)
     }
 }

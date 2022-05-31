@@ -10,12 +10,12 @@ import Kingfisher
 
 struct ProfileHeaderView: View {
     
-    
-    let user: User
+    let viewModel: ProfileViewModel
+    @Binding var editProfilePresented: Bool
     
     var body: some View {
         VStack {
-            KFImage(URL(string: user.profileImageUrl))
+            KFImage(URL(string: viewModel.user.profileImageUrl))
                 .resizable()
                 .scaledToFill()
                 .clipped()
@@ -23,11 +23,11 @@ struct ProfileHeaderView: View {
                 .cornerRadius(120 / 2)
                 .shadow(color: .black, radius: 10, x:0, y:0)
             
-            Text(user.fullname)
+            Text(viewModel.user.fullname)
                 .font(.headline)
                 .bold()
             
-            Text("@\(user.username)")
+            Text("@\(viewModel.user.username)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
             
@@ -55,8 +55,8 @@ struct ProfileHeaderView: View {
                 }
             }
             .padding()
-            
-            ProfileActionButtonView(isMyProfile: user.isCurrentUser)
+             
+            ProfileActionButtonView(viewModel: viewModel, editProfilePresented: $editProfilePresented)
         }
     }
 }
