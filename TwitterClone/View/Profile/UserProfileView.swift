@@ -10,7 +10,6 @@ import SwiftUI
 struct UserProfileView: View {
     
     @State var selectedFilter: TweetFilterOptions = .tweets
-    @State private var editProfilePresented = false
     @ObservedObject var viewModel: ProfileViewModel
     
     private let user: User
@@ -19,10 +18,11 @@ struct UserProfileView: View {
         self.user = user
         self.viewModel = ProfileViewModel(user: user)
     }
+    
     var body: some View {
         ScrollView {
             VStack {
-                ProfileHeaderView(viewModel: viewModel, editProfilePresented: $editProfilePresented)
+                ProfileHeaderView(viewModel: viewModel, isFollowed: $viewModel.isFollowed)
                     .padding()
                 FilterButtonView(selectedOption: $selectedFilter)
             }

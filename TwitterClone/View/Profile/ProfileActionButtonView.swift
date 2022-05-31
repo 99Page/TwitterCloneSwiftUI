@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileActionButtonView: View {
     
     let viewModel: ProfileViewModel
-    @Binding var editProfilePresented: Bool
+    @Binding var isFollowed: Bool
     
     var body: some View {
         ZStack {
@@ -31,9 +31,9 @@ struct ProfileActionButtonView: View {
             } else {
                 HStack {
                     Button {
-                        editProfilePresented ? viewModel.unfollow() : viewModel.follow()
+                        isFollowed ? viewModel.unfollow() : viewModel.follow()
                     } label: {
-                        Text(editProfilePresented ? "Following" : "Follow")
+                        Text(isFollowed ? "Following" : "Follow")
                             .bold()
                             .font(.subheadline)
                     }

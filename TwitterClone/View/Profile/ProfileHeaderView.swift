@@ -11,7 +11,7 @@ import Kingfisher
 struct ProfileHeaderView: View {
     
     let viewModel: ProfileViewModel
-    @Binding var editProfilePresented: Bool
+    @Binding var isFollowed: Bool
     
     var body: some View {
         VStack {
@@ -56,7 +56,7 @@ struct ProfileHeaderView: View {
             }
             .padding()
              
-            ProfileActionButtonView(viewModel: viewModel, editProfilePresented: $editProfilePresented)
+            ProfileActionButtonView(viewModel: viewModel, isFollowed: $isFollowed)
         }
     }
 }
