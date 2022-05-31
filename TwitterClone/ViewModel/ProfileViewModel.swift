@@ -21,8 +21,11 @@ class ProfileViewModel: ObservableObject {
         
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         
-        COLLECTION_FOLLOWING.document(currentUid).collection("user-following").document(self.user.id).setData([:]) { _ in
-            COLLECTION_FOLLOWERS.document(self.user.id).collection("user-follwers").document(currentUid).setData([:]) { _ in
+        let followingRef = COLLECTION_FOLLOWING.document(currentUid).collection("user-following")
+        let followersRef = COLLECTION_FOLLOWERS.document(user.id).collection("user-followers")
+        
+        followingRef.document(self.user.id).setData([:]) { _ in
+            followersRef.document(currentUid).setData([:]) { _ in
                 self.isFollowed = true
             }
         }
@@ -30,6 +33,15 @@ class ProfileViewModel: ObservableObject {
     }
     
     func unfollow() {
+        guard let curretUid = Auth.auth().currentUser?.uid else { return }
         
+        let followingRef = COLLECTION_FOLLOWING.document(curretUid).collection("user-following")
+        let followersRef = COLLECTION_FOLLOWERS.document(user.id).collection("user-followers")
+        
+        followersRef.document(user.id).delete { _ in
+            followingRef.document(curretUid).delete { _ in
+                self.isFollowed = false
+            }
+        }
     }
 }
