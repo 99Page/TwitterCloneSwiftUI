@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ContentView: View {
     
@@ -40,6 +41,16 @@ struct ContentView: View {
                             }
                     }
                     .navigationTitle("홈 화면")
+                    .navigationBarItems(leading: Button(action: {
+                        viewModel.signOut()
+                    }, label: {
+                        KFImage(URL(string: viewModel.user?.profileImageUrl ?? ""))
+                            .resizable()
+                            .scaledToFill()
+                            .clipped()
+                            .frame(width: 32, height: 32)
+                            .cornerRadius(16)
+                    }))
                     .navigationBarTitleDisplayMode(.inline)
                 }
             }

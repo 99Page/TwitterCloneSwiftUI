@@ -76,12 +76,12 @@ class AuthViewModel: ObservableObject {
     }
     
     func fetchUser() {
+        
         guard let uid = userSession?.uid else { return }
         
         Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
             guard let data = snapshot?.data() else { return }
-            let user = User(dictinoary: data)
-            print("DEBUG: User is \(user.username)")
+            self.user = User(dictinoary: data)
         }
     }
 }
