@@ -6,25 +6,29 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct TweetCell: View {
+    
+    let tweet: Tweet
+    
     var body: some View {
         VStack {
             HStack(alignment: .top) {
-                Image(systemName: "person")
+                KFImage(URL(string: tweet.profileImageUrl))
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
                     .clipped()
                     .frame(width: 56, height: 56)
                     .cornerRadius(56 / 2)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
-                        Text("노우영")
+                        Text(tweet.fullname)
                             .font(.subheadline)
                             .bold()
                         
-                        Text("@노한솔")
+                        Text("@\(tweet.username)")
                             .foregroundColor(.gray)
                             .font(.caption)
                         
@@ -33,7 +37,7 @@ struct TweetCell: View {
                             .font(.caption)
                     }
                     
-                    Text("5월 8일 일요일 커뮤니티 라운지에서 SwiftUI로 트위터 클론코딩. ")
+                    Text(tweet.caption)
                         .font(.body)
                         
                 }
@@ -90,11 +94,5 @@ struct TweetCell: View {
             Divider()
         }
         .padding(.bottom)
-    }
-}
-
-struct TweetCell_Previews: PreviewProvider {
-    static var previews: some View {
-        TweetCell()
     }
 }
