@@ -14,7 +14,6 @@ struct User: Identifiable {
     let profileImageUrl: String
     let fullname: String
     let email: String
-
     var isCurrentUser: Bool { return  Auth.auth().currentUser?.uid == self.id }
     
     init(dictinoary: [String: Any]) {

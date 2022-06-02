@@ -45,6 +45,7 @@
 		15CBA29A2836074A005E38F6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CBA2992836074A005E38F6 /* LoginView.swift */; };
 		15CBA29C28360756005E38F6 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CBA29B28360756005E38F6 /* RegistrationView.swift */; };
 		15CD0B1D283CBAA20026B017 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CD0B1C283CBAA20026B017 /* CustomSecureField.swift */; };
+		15D0101D2848DFD10055E92C /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D0101C2848DFD10055E92C /* UploadTweetViewModel.swift */; };
 		15E3FC7A28467731007ADCAD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E3FC7928467731007ADCAD /* ProfileViewModel.swift */; };
 		15EA6E4E282CB81900DB92AF /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA6E4D282CB81900DB92AF /* MessageView.swift */; };
 		15EA6E50282CBA4600DB92AF /* NewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA6E4F282CBA4600DB92AF /* NewMessageView.swift */; };
@@ -106,6 +107,7 @@
 		15CBA2992836074A005E38F6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		15CBA29B28360756005E38F6 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		15CD0B1C283CBAA20026B017 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
+		15D0101C2848DFD10055E92C /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewModel.swift; sourceTree = "<group>"; };
 		15E3FC7928467731007ADCAD /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		15EA6E4D282CB81900DB92AF /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		15EA6E4F282CBA4600DB92AF /* NewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageView.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				15E3FC7928467731007ADCAD /* ProfileViewModel.swift */,
 				153D0467283B97B80024C03F /* AuthViewModel.swift */,
 				152FBF542843A3F5003D15DC /* SearchViewModel.swift */,
+				15D0101C2848DFD10055E92C /* UploadTweetViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				1521ECC8282D5A4500CA5E98 /* ProfileActionButtonView.swift in Sources */,
 				1527ACC6283294C600AC5508 /* NewTweetView.swift in Sources */,
 				15B7A4EC283A475000179309 /* CustomTextField.swift in Sources */,
+				15D0101D2848DFD10055E92C /* UploadTweetViewModel.swift in Sources */,
 				15E3FC7A28467731007ADCAD /* ProfileViewModel.swift in Sources */,
 				15EEC6982828C6FB00F89F45 /* ConversationCell.swift in Sources */,
 				1521ECC6282D5A3000CA5E98 /* FilterButtonView.swift in Sources */,
