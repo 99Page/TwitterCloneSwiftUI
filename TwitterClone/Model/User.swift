@@ -14,6 +14,9 @@ struct User: Identifiable {
     let profileImageUrl: String
     let fullname: String
     let email: String
+    
+    var followings: Int
+    var follwers: Int
     var isCurrentUser: Bool { return  Auth.auth().currentUser?.uid == self.id }
     
     init(dictinoary: [String: Any]) {
@@ -22,5 +25,7 @@ struct User: Identifiable {
         self.profileImageUrl = dictinoary["profileImageUrl"] as? String ?? ""
         self.fullname = dictinoary["fullname"] as? String ?? ""
         self.email = dictinoary["email"] as? String ?? ""
+        self.followings = dictinoary["followings"] as? Int ?? 0
+        self.follwers = dictinoary["followers"] as? Int ?? 0
     }
 }
