@@ -15,6 +15,7 @@ class TweetActionViewModel: ObservableObject {
     
     init(tweet: Tweet) {
         self.tweet = tweet
+        checkIfUserLikeTweet()
     }
     
     func likeTweet() {
@@ -42,5 +43,14 @@ class TweetActionViewModel: ObservableObject {
             }
         }
         
+    }
+    
+    func checkIfUserLikeTweet() {
+        guard let uid = AuthViewModel.shared.userSession?.uid else { return }
+        
+        COLLECTION_USERS.document(uid).collection("user-likes").document(tweet.id).getDocument { snapshot, error in
+            guard let didLike = snapshot?.exists else { return }
+            self.didLike = didLike
+        }
     }
 }

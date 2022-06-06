@@ -33,7 +33,7 @@ struct FilterButtonView: View {
     private var padding: CGFloat {
         let rawValue = CGFloat(selectedOption.rawValue)
         let count = CGFloat(TweetFilterOptions.allCases.count)
-        return ((UIScreen.main.bounds.width / count) * rawValue) + 16
+        return ((SCREEN_WIDTH / count) * rawValue) + 16
     }
     
     var body: some View {
