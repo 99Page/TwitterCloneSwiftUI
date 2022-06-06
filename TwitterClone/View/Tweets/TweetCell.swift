@@ -25,6 +25,7 @@ struct TweetCell: View {
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
                         Text(tweet.fullname)
+                            .foregroundColor(.black)
                             .font(.subheadline)
                             .bold()
                         
@@ -38,7 +39,7 @@ struct TweetCell: View {
                     }
                     
                     Text(tweet.caption)
-                        .font(.body)
+                        .foregroundColor(.black)
                         
                 }
                 
@@ -46,51 +47,7 @@ struct TweetCell: View {
             }
             .padding(.horizontal)
             
-            HStack {
-                Button {
-                    
-                } label: {
-                    Image(systemName: "bubble.left")
-                        .font(.caption)
-                        .frame(width: 32, height: 32)
-                }
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "arrow.2.squarepath")
-                        .font(.caption)
-                        .frame(width: 32, height: 32)
-
-                }
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "heart")
-                        .font(.caption)
-                        .frame(width: 32, height: 32)
-
-                }
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "bookmark")
-                        .font(.caption)
-                        .frame(width: 32, height: 32)
-                    
-                }
-            }
-            .padding(.horizontal)
-            .foregroundColor(.gray)
-            
+            TweetActionView()
             Divider()
         }
         .padding(.bottom)

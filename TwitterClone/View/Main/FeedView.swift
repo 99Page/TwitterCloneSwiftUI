@@ -16,12 +16,13 @@ struct FeedView: View {
         ZStack(alignment: .bottomTrailing) {
             ScrollView {
                 
-                VStack {
+                LazyVStack {
                     ForEach(viewModel.tweets) { tweet in
-                        TweetCell(tweet: tweet)
-                    }
-                    .onDelete { _ in
-                        
+                        NavigationLink {
+                            TweetDetailView(tweet: tweet)
+                        } label: {
+                            TweetCell(tweet: tweet)
+                        }
                     }
                 }
             }

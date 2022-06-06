@@ -2,7 +2,7 @@
 //  SearchViewModel.swift
 //  TwitterClone
 //
-//  Created by 노우영 on 2022/05/29.
+//  Created by 노우영 on 2022/06/06.
 //
 
 import SwiftUI

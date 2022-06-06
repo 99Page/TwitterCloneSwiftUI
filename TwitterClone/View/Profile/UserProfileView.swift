@@ -11,7 +11,6 @@ struct UserProfileView: View {
     
     @State var selectedFilter: TweetFilterOptions = .tweets
     @ObservedObject var viewModel: ProfileViewModel
-    
     private let user: User
     
     init(user: User) {
