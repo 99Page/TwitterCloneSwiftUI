@@ -9,11 +9,15 @@ import SwiftUI
 
 struct TweetActionView: View {
     
-    @ObservedObject var viewModel: TweetActionViewModel
+//    @ObservedObject var viewModel: TweetActionViewModel
     
-    init(tweet: Tweet) {
-        self.viewModel = TweetActionViewModel(tweet: tweet)
-    }
+    
+//    init(tweet: Tweet) {
+//        self.viewModel = TweetActionViewModel(tweet: tweet)
+//    }
+    
+    @Binding var tweet: Tweet
+    @EnvironmentObject var viewModel: FeedViewModel
     
     var body: some View {
         HStack {
@@ -39,12 +43,13 @@ struct TweetActionView: View {
             Spacer()
             
             Button {
-                viewModel.didLike ? viewModel.unlikeTweet() : viewModel.likeTweet()
+                tweet.didLike ? viewModel.unlikeTweet(tweet: tweet) : viewModel.likeTweet(tweet: tweet)
+                tweet.didLike.toggle()
             } label: {
-                Image(systemName: viewModel.didLike ? "heart.fill" : "heart")
+                Image(systemName: tweet.didLike ? "heart.fill" : "heart")
                     .font(.caption)
                     .frame(width: 32, height: 32)
-                    .foregroundColor(viewModel.didLike ? .red : .gray)
+                    .foregroundColor(tweet.didLike ? .red : .gray)
 
             }
             

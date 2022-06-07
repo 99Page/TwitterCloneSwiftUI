@@ -10,18 +10,18 @@ import SwiftUI
 struct FeedView: View {
     
     @State var isShowingNewTweetView = false
-    @ObservedObject var viewModel = FeedViewModel()
+    @EnvironmentObject var viewModel: FeedViewModel
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             ScrollView {
-                
                 LazyVStack {
-                    ForEach(viewModel.tweets) { tweet in
+                    
+                    ForEach(0..<viewModel.tweets.count, id: \.self) { index in
                         NavigationLink {
-                            TweetDetailView(tweet: tweet)
+                            TweetDetailView(tweet: $viewModel.tweets[index])
                         } label: {
-                            TweetCell(tweet: tweet)
+                            TweetCell(tweet: $viewModel.tweets[index])
                         }
                     }
                 }

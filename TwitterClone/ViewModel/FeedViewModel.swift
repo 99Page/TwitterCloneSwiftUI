@@ -21,4 +21,30 @@ class FeedViewModel: ObservableObject {
             self.tweets = documents.map({ Tweet(dictionary: $0.data())})
         }
     }
+    
+    func likeTweet(tweet: Tweet) {
+        
+        guard let uid = AuthViewModel.shared.userSession?.uid else { return }
+        
+        COLLECTION_TWEETS.document(tweet.id).updateData(["likes": tweet.likes + 1]) { _ in
+            COLLECTION_TWEETS.document(tweet.id).collection("tweet-likes").document(uid).setData([:]) { _ in
+                COLLECTION_USERS.document(uid).collection("user-likes").document(tweet.id).setData([:]) { _ in
+                    
+                }
+            }
+        }
+    }
+    
+    func unlikeTweet(tweet: Tweet) {
+        
+        guard let uid = AuthViewModel.shared.userSession?.uid else { return }
+        
+        COLLECTION_TWEETS.document(tweet.id).updateData(["likes": tweet.likes - 1]) { _ in
+            COLLECTION_TWEETS.document(tweet.id).collection("tweet-likes").document(uid).setData([:]) { _ in
+                COLLECTION_USERS.document(uid).collection("user-likes").document(tweet.id).delete() { _ in
+                
+                }
+            }
+        }
+    }
 }

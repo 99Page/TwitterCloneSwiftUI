@@ -18,6 +18,7 @@ struct TwitterCloneApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(AuthViewModel.shared)
+                .environmentObject(FeedViewModel())
         }
     }
 }
