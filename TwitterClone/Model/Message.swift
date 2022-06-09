@@ -15,11 +15,11 @@ struct MockMessage: Identifiable {
 }
 
 let MOCK_MESSAGES: [MockMessage] = [
-    .init(id: 1, imageName: "person", massageText: "Hey what`s up?", isCurrentUser: false),
-    .init(id: 2, imageName: "applelogo", massageText: "Not much, you?", isCurrentUser: true),
-    .init(id: 3, imageName: "applelogo", massageText: "How`s the marvel universe?", isCurrentUser: true),
-    .init(id: 4, imageName: "person", massageText: "It`s pretty good dude", isCurrentUser: false),
-    .init(id: 5, imageName: "person", massageText: "How`s your battle with the joker?", isCurrentUser: false),
-    .init(id: 6, imageName: "applelogo", massageText: "Not going so hot...", isCurrentUser: true),
+    .init(id: 1, imageName: "person", massageText: "I messed up tonight", isCurrentUser: false),
+    .init(id: 2, imageName: "applelogo", massageText: "I lost another fight", isCurrentUser: true),
+    .init(id: 3, imageName: "applelogo", massageText: "Lost to myself, but I'll just start again", isCurrentUser: true),
+    .init(id: 4, imageName: "person", massageText: "I keep falling down", isCurrentUser: false),
+    .init(id: 5, imageName: "person", massageText: "I keep on hitting the ground", isCurrentUser: false),
+    .init(id: 6, imageName: "applelogo", massageText: "But I always get up now to see what's next", isCurrentUser: true),
 ]
 

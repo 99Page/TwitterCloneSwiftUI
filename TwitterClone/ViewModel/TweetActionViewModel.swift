@@ -18,9 +18,9 @@
 //        checkIfUserLikeTweet()
 //    }
 //    
-//    func likeTweet() {
+//    func likeTweet() -> Int {
 //        
-//        guard let uid = AuthViewModel.shared.userSession?.uid else { return }
+//        guard let uid = AuthViewModel.shared.userSession?.uid else { return 1 }
 //        
 //        COLLECTION_TWEETS.document(tweet.id).updateData(["likes": tweet.likes + 1]) { _ in
 //            COLLECTION_TWEETS.document(self.tweet.id).collection("tweet-likes").document(uid).setData([:]) { _ in
@@ -29,11 +29,13 @@
 //                }
 //            }
 //        }
+//        
+//        return 1
 //    }
 //    
-//    func unlikeTweet() {
+//    func unlikeTweet() -> Int {
 //        
-//        guard let uid = AuthViewModel.shared.userSession?.uid else { return }
+//        guard let uid = AuthViewModel.shared.userSession?.uid else { return  0}
 //        
 //        COLLECTION_TWEETS.document(tweet.id).updateData(["likes": tweet.likes - 1]) { _ in
 //            COLLECTION_TWEETS.document(self.tweet.id).collection("tweet-likes").document(uid).setData([:]) { _ in
@@ -43,6 +45,8 @@
 //            }
 //        }
 //        
+//        
+//        return 0
 //    }
 //    
 //    func checkIfUserLikeTweet() {

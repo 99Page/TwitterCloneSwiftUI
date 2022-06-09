@@ -30,6 +30,7 @@ class UploadTweetViewModel: ObservableObject {
                                   "likes": 0, 
                                    "id": docRef.documentID]
         
+        COLLECTION_USERS.document(user.id).collection("tweets").document(docRef.documentID).setData([:])
         docRef.setData(data, completion: completion)
     }
 }

@@ -24,6 +24,7 @@ struct UserProfileView: View {
                 ProfileHeaderView(viewModel: viewModel, isFollowed: $viewModel.isFollowed)
                     .padding()
                 FilterButtonView(selectedOption: $selectedFilter)
+                
             }
         }
     }

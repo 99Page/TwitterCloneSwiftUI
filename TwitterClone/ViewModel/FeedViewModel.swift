@@ -8,6 +8,7 @@
 import SwiftUI
 
 class FeedViewModel: ObservableObject {
+    
     @Published var tweets = [Tweet]()
     
     init() {
@@ -38,6 +39,17 @@ class FeedViewModel: ObservableObject {
         }
     }
     
+    func update(tweet: inout Tweet) {
+        
+        tweet.likes = 10
+        
+        COLLECTION_TWEETS.document(tweet.id).getDocument { snapshot, _ in
+            guard let data = snapshot?.data() else { return }
+            tweet.likes
+        }
+        
+    }
+    
     func unlikeTweet(tweet: Tweet) {
         
         guard let uid = AuthViewModel.shared.userSession?.uid else { return }
@@ -48,9 +60,12 @@ class FeedViewModel: ObservableObject {
             COLLECTION_TWEETS.document(tweet.id).updateData(["likes": tempTweet.likes - 1]) { _ in
                 COLLECTION_TWEETS.document(tweet.id).collection("tweet-likes").document(uid).delete() { _ in
                     COLLECTION_USERS.document(uid).collection("user-likes").document(tweet.id).delete() { _ in
+                        
                     }
                 }
             }
         }
+        
+        return 
     }
 }
