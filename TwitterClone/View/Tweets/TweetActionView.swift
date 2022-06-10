@@ -6,18 +6,14 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct TweetActionView: View {
     
-//    @ObservedObject var viewModel: TweetActionViewModel
-    
-//
-//    init(tweet: Tweet) {
-//        self.viewModel = TweetActionViewModel(tweet: tweet)
-//    }
-    
     @Binding var tweet: Tweet
     @EnvironmentObject var viewModel: FeedViewModel
+    let tweetIndex: Int
+    //    @ObservedObject var viewModel: TweetActionViewModel
     
     var body: some View {
         HStack {
@@ -43,7 +39,7 @@ struct TweetActionView: View {
             Spacer()
             
             Button {
-                tweet.didLike ? viewModel.unlikeTweet(tweet: tweet) : viewModel.likeTweet(tweet: tweet)
+                tweet.didLike ? viewModel.unlikeTweet(idx: tweetIndex) : viewModel.likeTweet(idx: tweetIndex)
                 tweet.didLike.toggle()
             } label: {
                 Image(systemName: tweet.didLike ? "heart.fill" : "heart")
@@ -66,6 +62,9 @@ struct TweetActionView: View {
         }
         .padding(.horizontal)
         .foregroundColor(.gray)
+        .onAppear {
+            viewModel.checkIfUserLikeTweet(idx: tweetIndex)
+        }
     }
 }
 

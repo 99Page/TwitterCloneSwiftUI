@@ -18,9 +18,9 @@ struct FeedView: View {
                 LazyVStack {
                     ForEach(0..<viewModel.tweets.count, id: \.self) { index in
                         NavigationLink {
-                            TweetDetailView(tweet: $viewModel.tweets[index])
+                            TweetDetailView(tweet: $viewModel.tweets[index], tweetIndex: index)
                         } label: {
-                            TweetCell(tweet: $viewModel.tweets[index])
+                            TweetCell(tweet: $viewModel.tweets[index], tweetIndex: index)
                         }
                     }
                 }
