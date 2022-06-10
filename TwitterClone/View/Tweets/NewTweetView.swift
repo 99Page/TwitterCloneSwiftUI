@@ -13,6 +13,7 @@ struct NewTweetView: View {
     @Binding var isPresented: Bool
     @State var captionText: String = ""
     @ObservedObject var viewModel: UploadTweetViewModel
+    @EnvironmentObject var feedViewModel: FeedViewModel
     
     init(isPresented: Binding<Bool>) {
         self._isPresented = isPresented
@@ -45,7 +46,8 @@ struct NewTweetView: View {
                         .foregroundColor(.blue)
                 }), trailing: Button(action: {
                     viewModel.uploadTweet(caption: captionText) { _ in
-                        isPresented.toggle() 
+                        isPresented.toggle()
+                        feedViewModel.fetchTweets()
                     }
                 }, label: {
                     Text("Tweet")

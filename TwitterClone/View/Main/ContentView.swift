@@ -13,27 +13,24 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        
         Group {
             if viewModel.userSession == nil {
                 LoginView()
             } else {
                 NavigationView {
                     TabView {
+                        
                         FeedView()
                             .tabItem {
                                 Image(systemName: "house")
                                 Text("Home")
                             }
                         
-                        
                         SearchView()
                             .tabItem {
                                 Image(systemName: "magnifyingglass")
                                 Text("Search")
                             }
-                        
-                        
                         ConversationView()
                             .tabItem {
                                 Image(systemName: "envelope")
@@ -55,9 +52,9 @@ struct ContentView: View {
                 }
             }
         }
-       
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

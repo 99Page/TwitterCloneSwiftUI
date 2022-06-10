@@ -16,12 +16,11 @@ struct FeedView: View {
         ZStack(alignment: .bottomTrailing) {
             ScrollView {
                 LazyVStack {
-                    
                     ForEach(0..<viewModel.tweets.count, id: \.self) { index in
                         NavigationLink {
-                            TweetDetailView(tweet: $viewModel.tweets[index])
+                            TweetDetailView(tweet: $viewModel.tweets[index], tweetIndex: index)
                         } label: {
-                            TweetCell(tweet: $viewModel.tweets[index])
+                            TweetCell(tweet: $viewModel.tweets[index], tweetIndex: index)
                         }
                     }
                 }
@@ -46,8 +45,8 @@ struct FeedView: View {
     }
 }
 
-struct FeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedView()
-    }
-}
+//struct FeedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FeedView()
+//    }
+//}
