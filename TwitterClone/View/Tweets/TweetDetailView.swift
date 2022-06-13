@@ -10,7 +10,7 @@ import Kingfisher
 
 struct TweetDetailView: View {
     
-    @Binding var tweet: Tweet
+    var tweet: Tweet
     let tweetIndex: Int 
     
     var body: some View {
@@ -65,7 +65,7 @@ struct TweetDetailView: View {
             }
             
             Divider()
-            TweetActionView(tweet: $tweet, tweetIndex: tweetIndex)
+            TweetActionView(tweet: tweet, tweetIndex: tweetIndex)
             
         }
         .padding()

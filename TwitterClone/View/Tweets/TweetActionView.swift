@@ -10,7 +10,7 @@ import Firebase
 
 struct TweetActionView: View {
     
-    @Binding var tweet: Tweet
+    var tweet: Tweet
     @EnvironmentObject var viewModel: FeedViewModel
     let tweetIndex: Int
     //    @ObservedObject var viewModel: TweetActionViewModel
@@ -40,7 +40,7 @@ struct TweetActionView: View {
             
             Button {
                 tweet.didLike ? viewModel.unlikeTweet(idx: tweetIndex) : viewModel.likeTweet(idx: tweetIndex)
-                tweet.didLike.toggle()
+                viewModel.tweets[tweetIndex].didLike.toggle()
             } label: {
                 Image(systemName: tweet.didLike ? "heart.fill" : "heart")
                     .font(.caption)
