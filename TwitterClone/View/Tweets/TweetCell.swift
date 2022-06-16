@@ -11,7 +11,7 @@ import Kingfisher
 struct TweetCell: View {
     
     var tweet: Tweet
-    let tweetIndex: Int 
+    var profileViewModelIndex: Int? 
     
     var body: some View {
         VStack {
@@ -48,7 +48,7 @@ struct TweetCell: View {
             }
             .padding(.horizontal)
             
-            TweetActionView(tweet: tweet, tweetIndex: tweetIndex)
+            TweetActionView(tweet: tweet)
             Divider()
         }
         .padding(.bottom)

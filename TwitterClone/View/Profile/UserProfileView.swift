@@ -26,6 +26,18 @@ struct UserProfileView: View {
                 FilterButtonView(selectedOption: $selectedFilter)
                 
             }
+            
+            LazyVStack {
+                if selectedFilter.rawValue == 0 {
+                    ForEach(0 ..< viewModel.userUploadTweets.count, id: \.self) { i in
+                        TweetCell(tweet: viewModel.userUploadTweets[i], profileViewModelIndex: i)
+                    }
+                } else {
+                    ForEach(0 ..< viewModel.userLikeTweets.count, id: \.self) { i in
+                        TweetCell(tweet: viewModel.userLikeTweets[i], profileViewModelIndex: i)
+                    }
+                }
+            }
         }
     }
 }

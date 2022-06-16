@@ -11,9 +11,7 @@ class FeedViewModel: ObservableObject {
     
     @Published var tweets = [Tweet]()
     
-    init() {
-        fetchTweets()
-    }
+    init() { }
     
     func fetchTweets() {
         COLLECTION_TWEETS.getDocuments { snapshot, error in
@@ -66,6 +64,7 @@ class FeedViewModel: ObservableObject {
         COLLECTION_USERS.document(uid).collection("user-likes").document(self.tweets[idx].id).getDocument { snapshot, error in
             guard let didLike = snapshot?.exists else { return }
             self.tweets[idx].didLike = didLike
+            print("FeedViewModel Debug - \(self.tweets[idx].caption) : \(self.tweets[idx].didLike)")
         }
     }
 }

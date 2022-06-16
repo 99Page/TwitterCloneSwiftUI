@@ -10,10 +10,13 @@ import Firebase
 
 struct TweetActionView: View {
     
-    var tweet: Tweet
     @EnvironmentObject var viewModel: FeedViewModel
-    let tweetIndex: Int
-    //    @ObservedObject var viewModel: TweetActionViewModel
+    
+    var tweet: Tweet
+    
+    var tweetIndex: Int {
+        viewModel.tweets.firstIndex(where: { $0.id == tweet.id })!
+    }
     
     var body: some View {
         HStack {
@@ -37,7 +40,6 @@ struct TweetActionView: View {
             }
             
             Spacer()
-            
             Button {
                 tweet.didLike ? viewModel.unlikeTweet(idx: tweetIndex) : viewModel.likeTweet(idx: tweetIndex)
                 viewModel.tweets[tweetIndex].didLike.toggle()
@@ -62,9 +64,6 @@ struct TweetActionView: View {
         }
         .padding(.horizontal)
         .foregroundColor(.gray)
-        .onAppear {
-            viewModel.checkIfUserLikeTweet(idx: tweetIndex)
-        }
     }
 }
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FeedView: View {
+struct Feed: View {
     
     @State var isShowingNewTweetView = false
     @EnvironmentObject var viewModel: FeedViewModel
@@ -16,11 +16,11 @@ struct FeedView: View {
         ZStack(alignment: .bottomTrailing) {
             ScrollView {
                 LazyVStack {
-                    ForEach(0..<viewModel.tweets.count, id: \.self) { index in
+                    ForEach(0 ..< viewModel.tweets.count, id: \.self) { index in
                         NavigationLink {
-                            TweetDetailView(tweet: viewModel.tweets[index], tweetIndex: index)
+                            TweetDetailView(tweet: viewModel.tweets[index])
                         } label: {
-                            TweetCell(tweet: viewModel.tweets[index], tweetIndex: index)
+                            TweetCell(tweet: viewModel.tweets[index])
                         }
                     }
                 }
@@ -41,6 +41,10 @@ struct FeedView: View {
             .fullScreenCover(isPresented: $isShowingNewTweetView) {
                 NewTweetView(isPresented: $isShowingNewTweetView)
             }
+        }
+        .onAppear {
+            viewModel.fetchTweets()
+            print("Feed Debug")
         }
     }
 }

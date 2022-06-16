@@ -10,6 +10,8 @@ import Firebase
 @main
 struct TwitterCloneApp: App {
     
+    @StateObject private var feedViewModel = FeedViewModel()
+    
     init() {
         FirebaseApp.configure()
     }
@@ -17,8 +19,8 @@ struct TwitterCloneApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(AuthViewModel.shared)
-                .environmentObject(FeedViewModel())
+                .environmentObject(AuthViewModel())
+                .environmentObject(feedViewModel)
         }
     }
 }
