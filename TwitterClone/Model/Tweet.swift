@@ -31,4 +31,8 @@ struct Tweet: Identifiable {
         self.timestamp = dictionary["timestamp"] as? Timestamp ?? Timestamp(date: Date())
         self.didLike = false
     }
+    
+    init (tweet: Tweet) {
+        self = tweet
+    }
 }

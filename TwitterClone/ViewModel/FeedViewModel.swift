@@ -11,12 +11,28 @@ class FeedViewModel: ObservableObject {
     
     @Published var tweets = [Tweet]()
     
-    init() { }
+    init() {}
     
     func fetchTweets() {
+        
+        tweets.removeAll()
+        
+        guard let uid = AuthViewModel.shared.userSession?.uid else { return }
+        
         COLLECTION_TWEETS.getDocuments { snapshot, error in
             guard let documents = snapshot?.documents else { return }
-            self.tweets = documents.map { Tweet(dictionary: $0.data()) }
+//            self.tweets = documents.map { Tweet(dictionary: $0.data()) }
+            documents.forEach { tweetSnapshot in
+                COLLECTION_USERS.document(uid).collection("user-likes").document(tweetSnapshot.documentID).getDocument { snapshot, _ in
+                    guard let didLike = snapshot?.exists else {
+                        self.tweets.append(Tweet(dictionary: tweetSnapshot.data()))
+                        return
+                    }
+                    var newTweet = Tweet(dictionary: tweetSnapshot.data())
+                    newTweet.didLike = didLike
+                    self.tweets.append(newTweet)
+                }
+            }
         }
     }
     
