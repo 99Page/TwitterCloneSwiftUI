@@ -14,23 +14,23 @@ class FeedViewModel: ObservableObject {
     init() {}
     
     func fetchTweets() {
-        
+
         tweets.removeAll()
         
         guard let uid = AuthViewModel.shared.userSession?.uid else { return }
         
         COLLECTION_TWEETS.getDocuments { snapshot, error in
             guard let documents = snapshot?.documents else { return }
-//            self.tweets = documents.map { Tweet(dictionary: $0.data()) }
-            documents.forEach { tweetSnapshot in
-                COLLECTION_USERS.document(uid).collection("user-likes").document(tweetSnapshot.documentID).getDocument { snapshot, _ in
-                    guard let didLike = snapshot?.exists else {
-                        self.tweets.append(Tweet(dictionary: tweetSnapshot.data()))
-                        return
+            self.tweets = documents.map { Tweet(dictionary: $0.data()) }
+            
+            self.tweets.forEach { tweet in
+                COLLECTION_USERS.document(uid).collection("user-likes").document(tweet.id).getDocument { s, _ in
+                    guard let didLike = s?.exists else { return }
+
+                    var tweetIndex: Int {
+                        self.tweets.firstIndex(where: { $0.id == tweet.id })!
                     }
-                    var newTweet = Tweet(dictionary: tweetSnapshot.data())
-                    newTweet.didLike = didLike
-                    self.tweets.append(newTweet)
+                    self.tweets[tweetIndex].didLike = didLike
                 }
             }
         }

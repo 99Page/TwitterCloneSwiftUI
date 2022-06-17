@@ -44,7 +44,6 @@ struct Feed: View {
         }
         .onAppear {
             viewModel.fetchTweets()
-            print("Feed Debug")
         }
     }
 }
