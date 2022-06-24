@@ -10,8 +10,8 @@ import Kingfisher
 
 struct TweetDetailView: View {
     
-    @Binding var tweet: Tweet
-    let tweetIndex: Int 
+    @EnvironmentObject var viewModel: FeedViewModel
+    let tweet: Tweet
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -64,8 +64,8 @@ struct TweetDetailView: View {
                 }
             }
             
+            TweetActionView(tweet: tweet)
             Divider()
-            TweetActionView(tweet: $tweet, tweetIndex: tweetIndex)
             
         }
         .padding()

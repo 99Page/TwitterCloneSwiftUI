@@ -10,34 +10,65 @@ import SwiftUI
 class FeedViewModel: ObservableObject {
     
     @Published var tweets = [Tweet]()
+    @Published var userLoadTweets = [Tweet]()
+    @Published var userLikedTweets = [Tweet]()
+    
     
     init() {
         fetchTweets()
     }
     
     func fetchTweets() {
-        COLLECTION_TWEETS.getDocuments { snapshot, error in
-            guard let documents = snapshot?.documents else { return }
-            self.tweets = documents.map { Tweet(dictionary: $0.data()) }
-        }
-    }
-    
-    func likeTweet(idx: Int) {
+
+        tweets.removeAll()
         
         guard let uid = AuthViewModel.shared.userSession?.uid else { return }
         
-        COLLECTION_TWEETS.document(tweets[idx].id).getDocument { snapshot, _ in
-            guard let data = snapshot?.data() else { return }
-            let tempTweet = Tweet(dictionary: data)
-            self.tweets[idx].likes = tempTweet.likes + 1
-            COLLECTION_TWEETS.document(self.tweets[idx].id).updateData(["likes": tempTweet.likes + 1]) { _ in
-                COLLECTION_TWEETS.document(self.tweets[idx].id).collection("tweet-likes").document(uid).setData([:]) { _ in
-                    COLLECTION_USERS.document(uid).collection("user-likes").document(self.tweets[idx].id).setData([:]) { _ in
-                        
+        COLLECTION_TWEETS.getDocuments { snapshot, error in
+            guard let documents = snapshot?.documents else { return }
+            self.tweets = documents.map { Tweet(dictionary: $0.data()) }
+            self.tweets.forEach { tweet in
+
+                COLLECTION_USERS.document(uid).collection("user-likes").document(tweet.id).getDocument { s, _ in
+                    guard let didLike = s?.exists else { return }
+
+                    var tweetIndex: Int {
+                        self.tweets.firstIndex(where: { $0.id == tweet.id })!
                     }
+                    self.tweets[tweetIndex].didLike = didLike
                 }
             }
         }
+    }
+    
+    func likeTweet(idx: Int) async {
+        
+//        COLLECTION_TWEETS.document(tweets[idx].id).getDocument { snapshot, _ in
+//            guard let data = snapshot?.data() else { return }
+//            let tempTweet = Tweet(dictionary: data)
+//            self.tweets[idx].likes = tempTweet.likes + 1
+//            COLLECTION_TWEETS.document(self.tweets[idx].id).updateData(["likes": tempTweet.likes + 1]) { _ in
+//                COLLECTION_TWEETS.document(self.tweets[idx].id).collection("tweet-likes").document(uid).setData([:]) { _ in
+//                    COLLECTION_USERS.document(uid).collection("user-likes").document(self.tweets[idx].id).setData([:]) { _ in
+//
+//                    }
+//                }
+//            }
+//        }
+        
+        do {
+            guard let uid = AuthViewModel.shared.userSession?.uid else { return }
+            guard let data = try await COLLECTION_TWEETS.document(tweets[idx].id).getDocument().data() else { return }
+            guard var increasedLike = data["likes"] as? Int else { return }
+            increasedLike += 1
+            self.tweets[idx].likes = increasedLike
+            try await COLLECTION_TWEETS.document(self.tweets[idx].id).updateData(["likes": increasedLike])
+            try await COLLECTION_TWEETS.document(self.tweets[idx].id).collection("tweet-likes").document(uid).setData([:])
+            try await COLLECTION_USERS.document(uid).collection("user-likes").document(self.tweets[idx].id).setData([:])
+        } catch {
+            print(error)
+        }
+        
     }
     
     func unlikeTweet(idx: Int) {
@@ -66,6 +97,7 @@ class FeedViewModel: ObservableObject {
         COLLECTION_USERS.document(uid).collection("user-likes").document(self.tweets[idx].id).getDocument { snapshot, error in
             guard let didLike = snapshot?.exists else { return }
             self.tweets[idx].didLike = didLike
+            print("FeedViewModel Debug - \(self.tweets[idx].caption) : \(self.tweets[idx].didLike)")
         }
     }
 }

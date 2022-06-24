@@ -41,7 +41,7 @@ struct FilterButtonView: View {
             HStack {
                 ForEach(TweetFilterOptions.allCases, id: \.self) { option in
                     Button {
-                        self.selectedOption = option
+                        withAnimation { self.selectedOption = option }
                     } label: {
                         Text(option.title)
                             .frame(width: underlineWidth )
@@ -53,7 +53,6 @@ struct FilterButtonView: View {
                 .frame(width: underlineWidth - 24, height: 3, alignment: .center)
                 .padding(.leading, padding)
                 .foregroundColor(.blue)
-                .animation(.spring())
         }
     }
 }
